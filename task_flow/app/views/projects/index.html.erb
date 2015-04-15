@@ -1,0 +1,16 @@
+<h3>There are no projects yet.</h3>
+
+<ul>
+
+  <% @projects.each do |project|%>
+    <li>
+      <%= project.name %> 
+      <%= link_to "View Project", project_path(project) %>
+    </li>
+  <% end %>
+
+</ul>
+
+
+
+<%= link_to "+ New Project", new_project_path %>
