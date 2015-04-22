@@ -15,16 +15,29 @@ Rails.application.routes.draw do
   #   resources :products
 
   
-  # All users controller routes
-  get "users/new" => "users#new", as: :new_user
-  get "users/:id" => "users#profile", as: :user
-  post "users/" => "users#create"
+  # staticpages controller
+  root "static_pages#index"
+
+  # users controller routes
+  get "users" => "users#index"                 # shows all users
+  get "signup" => "users#new", as: :signup   # signup form for new user
+  post "users" => "users#create"               # creates new user when form is submitted
+  get "users/:id" => "users#show", as: :user   # single user show page, shows user.project list
+
+
+  # session/login controller routes
+  get "login" => "sessions#new", as: :login
+  post "login" => "sessions#create"
+  delete "logout" => "sessions#destroy"
+
 
   # All projects controller routes
-  get "projects/" => "projects#index"
-  get "projects/new" => "projects#new", as: :new_project
-  get "projects/:id" => "projects#show", as: :project
-  post "projects/" => "projects#create"
+  get "users/:id" => "projects#index"
+  get "users/:id/new" => "projects#new", as: :new_user_project
+  post "users/:id" => "projects#create", as: :user_projects
+  get "users/:id/projects/:id" => "projects#show", as: :user_project
+  post "users/:id/projects" => "projects#create"
+  delete "users/:id/projects/:id" => "projects#destroy"
 
 
 

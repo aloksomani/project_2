@@ -1,11 +1,10 @@
-<h3>There are no projects yet.</h3>
+<h3>Here are the global projects.</h3>
 
 <ul>
 
   <% @projects.each do |project|%>
     <li>
-      <%= project.name %> 
-      <%= link_to "View Project", project_path(project) %>
+      <%= link_to project.name, project_path(project) %>
     </li>
   <% end %>
 

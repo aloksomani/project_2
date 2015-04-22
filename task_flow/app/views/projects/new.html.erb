@@ -1,6 +1,9 @@
+<%= "You are currently logged in as : #{current_user.name}" %>
+<%= link_to "Log out", logout_path, method: :delete %>
+
 <h3>Add a new Project</h3>
 
-<%= form_for @project do |f| %>
+<%= form_for [@user, @project] do |f| %>
   <div>
     <%= f.label :name %>
     <%= f.text_field :name %>

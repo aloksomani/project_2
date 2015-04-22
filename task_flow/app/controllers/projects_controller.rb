@@ -1,26 +1,31 @@
 class ProjectsController < ApplicationController
 
   def index
-    @projects = Project.all
-  end
-
-  def show
-    @project = Project.find(params[:id])
+    @projects = @user.projects.all
   end
 
   def new
-    @project = Project.new
+    @user = User.find(params[:id])
+    @project = @user.projects.new
+  end
+
+  def show
+    @project = User.project.find(params[:id])
   end
 
   def create
-    @project = Project.new(params.require(:project).permit(:name))
+    @user = User.find(params[:id])
+    @project = @user.projects.new(params.require(:project).permit(:name))
 
-    if @project.save
-      redirect_to @project
-    else
-      render :new
-    end
+    @project.save
+    redirect_to user_path(@user)
     
+  end
+
+  def destroy
+    @project = Project.find(params[:id])
+    @project.destroy
+    redirect_to projects_path
   end
 
 end
