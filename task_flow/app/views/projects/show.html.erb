@@ -1,2 +1,12 @@
-<h3> <%= @project.name %> </h3>
+<%= "You are currently logged in as : #{current_user.name}" %>
+<%= link_to "Log out", logout_path, method: :delete %>
+
+
+<h1> <%= @project.name %> </h1>
+
+<%= link_to "Edit this Project", project_edit_path(@user, @project) %>
+
+<%= link_to "Delete this Project", user_project_path(@user, @project), method: :delete %>
+
+<%= link_to "Back to my Projects", user_projects_path(@user) %>
 

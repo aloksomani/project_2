@@ -16,13 +16,13 @@ Rails.application.routes.draw do
 
   
   # staticpages controller
-  root "static_pages#index"
+  root "static_pages#index", as: :home
 
   # users controller routes
   get "users" => "users#index"                 # shows all users
   get "signup" => "users#new", as: :signup   # signup form for new user
   post "users" => "users#create"               # creates new user when form is submitted
-  get "users/:id" => "users#show", as: :user   # single user show page, shows user.project list
+  get "users/:id" => "users#show", as: :user   # single user show page, shows profile
 
 
   # session/login controller routes
@@ -32,12 +32,13 @@ Rails.application.routes.draw do
 
 
   # All projects controller routes
-  get "users/:id" => "projects#index"
-  get "users/:id/new" => "projects#new", as: :new_user_project
-  post "users/:id" => "projects#create", as: :user_projects
-  get "users/:id/projects/:id" => "projects#show", as: :user_project
-  post "users/:id/projects" => "projects#create"
-  delete "users/:id/projects/:id" => "projects#destroy"
+  get "users/:id/projects" => "projects#index", as: :user_projects
+  get "users/:id/projects/new" => "projects#new", as: :new_user_project
+  post "users/:id/projects" => "projects#create", as: :user_projects_create
+  get "users/:user_id/projects/:id" => "projects#show", as: :user_project
+  get "users/:user_id/projects/:id/edit" => "projects#edit", as: :project_edit
+  patch "users/:user_id/projects/:id" => "projects#update"
+  delete "users/:user_id/projects/:id" => "projects#destroy"
 
 
 

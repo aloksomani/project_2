@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
 
     if user && user.authenticate(params[:login][:password])
       session[:user_id] = user.id.to_s
-      redirect_to users_path
+      redirect_to user_path(user)
     else
       render :new
     end
@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session.delete(:user_id)
-    redirect_to login_path
+    redirect_to home_path
   end
 
 end
