@@ -13,6 +13,9 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @user = @project.user
+
+    @milestones = @project.milestones
+    @milestone = Milestone.new
   end
 
   def create

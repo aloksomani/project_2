@@ -41,5 +41,21 @@ Rails.application.routes.draw do
   delete "users/:user_id/projects/:id" => "projects#destroy"
 
 
+  # All milestones controller routes
+  get "users/:user_id/projects/:id/milestones/new" => "milestones#new", as: :new_project_milestone
+  post "users/:user_id/projects/:id" => "milestones#create", as: :project_milestones
+  get "users/:user_id/projects/:project_id/milestones/:id" => "milestones#show", as: :project_milestone
+  get "users/:user_id/projects/:project_id/milestones/:id/edit" => "milestones#edit", as: :milestone_edit
+  patch "users/:user_id/projects/:project_id/milestones/:id"  => "milestones#update"
+  delete "users/:user_id/projects/:project_id/milestones/:id" => "milestones#destroy"
+
+
+  # All task controller routes
+  get "users/:user_id/projects/:id/milestones/:id/tasks/new" => "tasks#new", as: :new_task
+  post "users/:user_id/projects/:id/milestones/:id" => "tasks#create", as: :tasks
+  get "users/:user_id/projects/:id/milestones/:id/tasks/:id/edit" => "tasks#edit", as: :task_edit
+  patch "users/:user_id/projects/:id/milestones/:id/tasks/:id" => "tasks#update"
+  delete "users/:user_id/projects/:id/milestones/:id/tasks/:id" => "tasks#destroy"
+
 
 end

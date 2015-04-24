@@ -1,12 +1,36 @@
-<%= "You are currently logged in as : #{current_user.name}" %>
-<%= link_to "Log out", logout_path, method: :delete %>
-
+<%= render "layouts/navbar" %>
 
 <h1> <%= @project.name %> </h1>
 
 <%= link_to "Edit this Project", project_edit_path(@user, @project) %>
 
 <%= link_to "Delete this Project", user_project_path(@user, @project), method: :delete %>
+
+
+<section>  
+
+  <ul>
+
+    <% @milestones.each do |milestone|%>
+      <li>
+        <%= link_to(milestone.name, project_milestone_path(@user, @project, milestone)) %>
+      </li>
+    <% end %>
+
+  </ul>
+
+
+  <h3>Add a new Milestone</h3>
+
+
+  <%= link_to "+ New Milestone", new_project_milestone_path %>
+
+
+</section>
+
+
+
+
 
 <%= link_to "Back to my Projects", user_projects_path(@user) %>
 
