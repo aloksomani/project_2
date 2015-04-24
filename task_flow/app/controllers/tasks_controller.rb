@@ -14,14 +14,12 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     @milestone = @task.milestone
 
-    if @task.completed == 1
-      @task.destroy
-    end
   end
 
   def create
     @milestone = Milestone.find(params[:id])
     @task = @milestone.tasks.new(task_params)
+    @task.completed = false
     @project = @milestone.project
 
     @task.save
@@ -36,9 +34,12 @@ class TasksController < ApplicationController
   def update
     @task = Task.find(params[:id])
     @milestone = @task.milestone
+    @project = @milestone.project
 
-    if @task.update(task_params)
-      redirect_to milestone_task_path(@milestone, @task)
+    @task.completed = true
+
+    if @task.save
+      redirect_to project_milestone_path(@project.user, @project, @milestone)
     else
       render :new
     end

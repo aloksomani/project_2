@@ -14,7 +14,7 @@ class MilestonesController < ApplicationController
     @milestone = Milestone.find(params[:id])
     @project = @milestone.project
     
-    @tasks = @milestone.tasks
+    @tasks = @milestone.tasks.where.not(completed: true)
     @task = Task.new
   end
 
