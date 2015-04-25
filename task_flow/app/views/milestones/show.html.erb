@@ -13,7 +13,6 @@
 
     <% @tasks.each do |task|%>
       <li>
-        <%#= check_box(task, task.completed, checked_value = 1, unchecked_value = 0)   %>
         <%= form_for(task, as: :task)  do |f| %>
           <%= task.description %>
           <%= f.submit "Done" %>

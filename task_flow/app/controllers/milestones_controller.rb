@@ -1,4 +1,7 @@
 class MilestonesController < ApplicationController
+
+  before_action :authenticate, only: [:show]
+  before_action :correct_user, only: [:show]
   
   def index
     @project = Project.find(params[:id])
@@ -50,7 +53,6 @@ class MilestonesController < ApplicationController
 
     redirect_to user_project_path(@user, @project)
   end
-
 
   private
   def milestone_params

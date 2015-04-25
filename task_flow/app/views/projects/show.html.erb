@@ -12,21 +12,32 @@
   <ul>
 
     <% @milestones.each do |milestone|%>
-      <li>
+      <div>
         <%= link_to(milestone.name, project_milestone_path(@user, @project, milestone)) %>
-      </li>
+      </div>
+
+      <div>
+        <% milestone.active_tasks.each do |task| %>
+          <li>
+            <%= form_for(task, as: :task)  do |f| %>
+              <%= task.description %>
+              <%= f.submit "Done" %>
+            <% end %>
+          </li>
+        <% end %>
+      </div>
+
     <% end %>
 
   </ul>
-
-
-  <h3>Add a new Milestone</h3>
 
 
   <%= link_to "+ New Milestone", new_project_milestone_path %>
 
 
 </section>
+
+
 
 
 

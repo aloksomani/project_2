@@ -54,7 +54,6 @@ Rails.application.routes.draw do
   get "users/:user_id/projects/:id/milestones/:id/tasks/new" => "tasks#new", as: :new_task
   post "users/:user_id/projects/:id/milestones/:id" => "tasks#create", as: :tasks
   get "users/:user_id/projects/:id/milestones/:id/tasks/:id/edit" => "tasks#edit", as: :task_edit
-  # patch "users/:user_id/projects/:id/milestones/:id/tasks/:id" => "tasks#update", as: :task_update
   delete "users/:user_id/projects/:id/milestones/:id/tasks/:id" => "tasks#destroy"
   patch "tasks/:id" => "tasks#update"
   get "tasks/:id" => "tasks#show", as: :task
