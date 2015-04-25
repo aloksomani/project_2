@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   # session/login controller routes
   get "login" => "sessions#new", as: :login
   post "login" => "sessions#create"
-  delete "logout" => "sessions#destroy"
+  delete "logout" => "sessions#destroy", as: :logout
 
 
   # All projects controller routes
